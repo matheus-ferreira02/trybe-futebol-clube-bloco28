@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 interface ErrorMiddleware extends Error {
-  statusCode: number,
+  statusCode?: number,
 }
 
 export default (err: ErrorMiddleware, _req: Request, res: Response, _next: NextFunction) => {
