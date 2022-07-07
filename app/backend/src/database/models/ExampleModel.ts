@@ -1,30 +1,33 @@
-import { Model } from 'sequelize';
+import { Model, STRING } from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
 
-class Example extends Model {
-  // public <campo>!: <tipo>;
+class User extends Model {
+  id!: number;
+  username!: string;
+  role!: string;
+  email!:string;
+  password!:string;
 }
 
-Example.init({
-  // ... Campos
+User.init({
+  username: {
+    type: STRING,
+  },
+  role: {
+    type: STRING,
+  },
+  email: {
+    type: STRING,
+  },
+  password: {
+    type: STRING,
+  },
 }, {
-  // ... Outras configs
   underscored: true,
   sequelize: db,
-  // modelName: 'example',
+  modelName: 'users',
   timestamps: false,
 });
 
-/**
-  * `Workaround` para aplicar as associations em TS: 
-  * Associations 1:N devem ficar em uma das instâncias de modelo
-  * */
-
-// OtherModel.belongsTo(Example, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Example, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
-
-// Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
-
-export default Example;
+export default User;
