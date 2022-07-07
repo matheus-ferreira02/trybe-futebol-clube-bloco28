@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import LoginService from '../services/login';
 
-export default class loginController {
+export default class LoginController {
   constructor(private service: LoginService) {}
 
   public async sigIn(req: Request, res: Response) {
