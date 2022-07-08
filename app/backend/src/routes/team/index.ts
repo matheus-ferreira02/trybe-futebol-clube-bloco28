@@ -7,4 +7,6 @@ const teamController = factory.teamLayers();
 
 routes.get('/', teamController.get.bind(teamController));
 
+routes.get('/:id', teamController.getById.bind(teamController));
+
 export default routes;
