@@ -28,4 +28,8 @@ export default class MatchService {
 
     return createdMatch;
   }
+
+  public async finish(id: number) {
+    await this.model.update({ inProgress: false }, { where: { id } });
+  }
 }
