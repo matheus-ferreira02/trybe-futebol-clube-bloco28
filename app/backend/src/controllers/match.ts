@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import MatchService from '../services/match';
 
 export default class MatchController {
@@ -10,13 +10,17 @@ export default class MatchController {
     return res.status(200).json(matches);
   }
 
-  public async create(req: Request, res: Response) {
-    const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
+  public async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
 
-    const createdMatch = await this.service
-      .create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals });
+      const createdMatch = await this.service
+        .create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals });
 
-    return res.status(201).json(createdMatch);
+      return res.status(201).json(createdMatch);
+    } catch (error) {
+      next(error);
+    }
   }
 
   public async finish(req: Request, res: Response) {
@@ -24,6 +28,6 @@ export default class MatchController {
 
     await this.service.finish(Number(id));
 
-    return res.status(201).json({ message: 'Finished' });
+    return res.status(200).json({ message: 'Finished' });
   }
 }
