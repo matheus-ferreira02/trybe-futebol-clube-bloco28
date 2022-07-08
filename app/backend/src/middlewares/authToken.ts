@@ -8,12 +8,12 @@ export default (req: IRequestUser, _res: Response, next: NextFunction) => {
   try {
     const { authorization } = req.headers;
 
-    if (!authorization) return;
+    if (!authorization) return next(new GenerateError(401, 'Token must be a valid token'));
 
     const userDecoded = jwtUtils.decodeToken(authorization) as jwt.JwtPayload;
     req.user = userDecoded.data;
     return next();
   } catch (error) {
-    return next(new GenerateError(401, 'Expired or invalid token'));
+    return next(new GenerateError(401, 'Token must be a valid token'));
   }
 };

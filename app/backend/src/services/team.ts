@@ -15,4 +15,10 @@ export default class TeamService {
 
     return team;
   }
+
+  public async getByIds(ids: number[]) {
+    const team = await this.model.findAll({ where: { id: ids } }) as ITeam[];
+
+    return team;
+  }
 }
