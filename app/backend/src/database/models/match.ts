@@ -26,6 +26,7 @@ Match.init({
   },
   inProgress: {
     type: BOOLEAN,
+    defaultValue: true,
   },
 }, {
   underscored: true,
