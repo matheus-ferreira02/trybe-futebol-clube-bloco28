@@ -13,9 +13,11 @@ export default class LoginService {
     if (!user) throw new GenerateError(401, 'Incorrect email or password');
 
     const isValid = await bcrypt.compare(password, user.password);
+
     if (!isValid) throw new GenerateError(401, 'Incorrect email or password');
 
     const { id, email, username, role } = user;
+
     const token = jwtUtils.generateToken({ id, email, username, role });
 
     return token;

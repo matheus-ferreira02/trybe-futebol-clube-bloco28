@@ -5,6 +5,8 @@ interface ErrorMiddleware extends Error {
 }
 
 export default (err: ErrorMiddleware, _req: Request, res: Response, _next: NextFunction) => {
+  console.log(err);
+
   if (err.statusCode) return res.status(err.statusCode).json({ message: err.message });
 
   return res.status(500).json({ message: 'Internal server error' });
