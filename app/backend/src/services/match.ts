@@ -6,10 +6,16 @@ export default class MatchService {
 
   public async get() {
     const matches = await this.model.findAll({
-      include: {
+      include: [{
         model: Team,
-        as: 'homeTeam',
+        as: 'teamHome',
+        attributes: ['teamName'],
       },
+      {
+        model: Team,
+        as: 'teamAway',
+        attributes: ['teamName'],
+      }],
     });
 
     return matches;
