@@ -1,0 +1,9 @@
+import * as express from 'express';
+import factory from '../../factory/routes';
+
+const routes = express.Router();
+const leaderBoardController = factory.leaderboardLayers();
+
+routes.get('/home', leaderBoardController.getHomeMatch.bind(leaderBoardController));
+
+export default routes;

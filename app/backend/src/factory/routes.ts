@@ -1,3 +1,5 @@
+import LeaderBoardService from '../services/leaderboard';
+import LeaderBoardController from '../controllers/leaderboard';
 import LoginService from '../services/login';
 import LoginController from '../controllers/login';
 import TeamController from '../controllers/team';
@@ -26,8 +28,16 @@ const matchLayers = () => {
   return controller;
 };
 
+const leaderboardLayers = () => {
+  const service = new LeaderBoardService();
+  const controller = new LeaderBoardController(service);
+
+  return controller;
+};
+
 export default {
   loginLayers,
   teamLayers,
   matchLayers,
+  leaderboardLayers,
 };
