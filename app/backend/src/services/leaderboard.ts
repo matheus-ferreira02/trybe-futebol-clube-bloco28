@@ -17,8 +17,10 @@ export default class LeaderBoardService {
       where: { inProgress: false },
     } }) as unknown as homeMatches[];
 
-    const formattedTable = teamMatches.map((team) => new BuildLeaderboard(team));
+    const boardFormatted = teamMatches.map((team) => new BuildLeaderboard(team));
 
-    return formattedTable;
+    const sortBoard = BuildLeaderboard.orderTable(boardFormatted);
+
+    return sortBoard;
   }
 }
