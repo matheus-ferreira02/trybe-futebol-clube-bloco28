@@ -1,11 +1,10 @@
+import { awayMatches, homeMatches } from '../protocols/ITeamLeaderboard';
 import Team from '../database/models/team';
 import Match from '../database/models/match';
-import BuildLeaderboard from '../utils/buildLeaderboard';
-import { matchHome } from '../protocols/ITeamLeaderboard';
-
-interface homeMatches extends Team {
-  matchHome: matchHome[]
-}
+import BuildLeaderboardHome from '../utils/buildLeaderboardHome';
+import Serialize from '../utils/serialize';
+import UtilsLeaderboard from '../utils/utilsLeaderboard';
+import BuildLeaderboardAway from '../utils/buildLeaderboardAway';
 
 export default class LeaderBoardService {
   private model = Team;
@@ -17,9 +16,26 @@ export default class LeaderBoardService {
       where: { inProgress: false },
     } }) as unknown as homeMatches[];
 
-    const boardFormatted = teamMatches.map((team) => new BuildLeaderboard(team));
+    const matchesSerialize = Serialize.homeMatch(teamMatches);
+    const boardFormatted = matchesSerialize.map((team) => new BuildLeaderboardHome(team));
 
-    const sortBoard = BuildLeaderboard.orderTable(boardFormatted);
+    const sortBoard = UtilsLeaderboard.orderTable(boardFormatted);
+
+    return sortBoard;
+  }
+
+  public async getAwayMatch() {
+    const teamMatches = await this.model.findAll({ include: {
+      model: Match,
+      as: 'matchAway',
+      where: { inProgress: false },
+    } }) as unknown as awayMatches[];
+
+    const matchesSerialize = Serialize.awayMatch(teamMatches);
+
+    const boardFormatted = matchesSerialize.map((team) => new BuildLeaderboardAway(team));
+
+    const sortBoard = UtilsLeaderboard.orderTable(boardFormatted);
 
     return sortBoard;
   }

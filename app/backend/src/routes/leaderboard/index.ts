@@ -5,5 +5,6 @@ const routes = express.Router();
 const leaderBoardController = factory.leaderboardLayers();
 
 routes.get('/home', leaderBoardController.getHomeMatch.bind(leaderBoardController));
+routes.get('/away', leaderBoardController.getAwayMatch.bind(leaderBoardController));
 
 export default routes;

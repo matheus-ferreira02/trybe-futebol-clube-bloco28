@@ -9,4 +9,10 @@ export default class LeaderBoardController {
 
     return res.status(200).json(teamMatches);
   }
+
+  public async getAwayMatch(req: Request, res: Response) {
+    const teamMatches = await this.service.getAwayMatch();
+
+    return res.status(200).json(teamMatches);
+  }
 }

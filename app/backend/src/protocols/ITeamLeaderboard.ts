@@ -1,4 +1,6 @@
-export type matchHome = {
+import Team from '../database/models/team';
+
+export type match = {
   id: number
   homeTeam: number
   awayTeam: number
@@ -7,10 +9,18 @@ export type matchHome = {
   inProgress: boolean
 };
 
+export interface homeMatches extends Team {
+  matchHome: match[]
+}
+
+export interface awayMatches extends Team {
+  matchAway: match[]
+}
+
 export default interface ITeamLeaderboard {
   id: number
   teamName: string
-  matchHome: matchHome[]
+  matches: match[]
 }
 
 export interface IFormattedBoard {
