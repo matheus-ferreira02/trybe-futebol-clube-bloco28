@@ -15,4 +15,10 @@ export default class LeaderBoardController {
 
     return res.status(200).json(teamMatches);
   }
+
+  public async getAllMatches(req: Request, res: Response) {
+    const teamMatches = await this.service.getAllMatches();
+
+    return res.status(200).json(teamMatches);
+  }
 }

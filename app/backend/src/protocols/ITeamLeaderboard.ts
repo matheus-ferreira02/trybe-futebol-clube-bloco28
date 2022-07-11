@@ -17,6 +17,11 @@ export interface awayMatches extends Team {
   matchAway: match[]
 }
 
+export interface allMatches extends Team {
+  matchAway: match[]
+  matchHome: match[]
+}
+
 export default interface ITeamLeaderboard {
   id: number
   teamName: string
@@ -34,4 +39,11 @@ export interface IFormattedBoard {
   goalsOwn: number;
   goalsBalance: number;
   efficiency: number;
+}
+
+export interface ILeaderboard {
+  id: number
+  teamName: string
+  matchAway: match[],
+  matchHome: match[]
 }
