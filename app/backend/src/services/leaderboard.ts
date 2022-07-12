@@ -1,11 +1,11 @@
 import { awayMatches, homeMatches, allMatches } from '../protocols/ITeamLeaderboard';
 import Team from '../database/models/team';
 import Match from '../database/models/match';
-import BuildLeaderboardHome from '../utils/buildLeaderboardHome';
+import BuildLeaderboardHome from '../utils/createLeaderboardHome';
 import Serialize from '../utils/serialize';
 import UtilsLeaderboard from '../utils/utilsLeaderboard';
-import BuildLeaderboardAway from '../utils/buildLeaderboardAway';
-import BuildLeaderboard from '../utils/buildLeaderboard';
+import BuildLeaderboardAway from '../utils/createLeaderboardAway';
+import BuildLeaderboard from '../utils/createLeaderboard';
 
 export default class LeaderBoardService {
   private model = Team;
