@@ -22,7 +22,7 @@ export default class LeaderBoardService {
 
     const sortBoard = UtilsLeaderboard.orderTable(boardFormatted);
 
-    return teamMatches;
+    return sortBoard;
   }
 
   public async getAwayMatch() {
