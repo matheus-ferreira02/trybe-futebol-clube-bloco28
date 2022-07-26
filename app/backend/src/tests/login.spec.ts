@@ -42,7 +42,8 @@ describe('Testa a rota Login', () => {
         .set('Authorization', token);
 
       expect(chaiHttpResponse.status).to.be.eq(200);
-      expect(chaiHttpResponse.body).to.be.eq({ role: 'admin' });
+      expect(chaiHttpResponse.body).to.haveOwnProperty('role');
+      expect(chaiHttpResponse.body.role).to.be.eq('admin');
     });
   });
   
